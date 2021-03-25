@@ -125,6 +125,7 @@ function cargarDatos() {
 
 $(document).ready(function () {
     $("#cargar").click(function () {
+        
         var paginas = $("#page_count").text();
         var papel = document.getElementById("Spapel").value;
         var tamaño = document.getElementById("Stamano").value;

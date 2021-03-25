@@ -1,3 +1,27 @@
+<?php
+require_once "../clases/conexioin.php";
+require_once "../clases/consultas.php";
+$c = new conectar();
+        $conexion = $c->conexion();
+if(isset($_POST['btnBuscar']))
+    {
+        $control = $_POST['folio'];
+
+        if(!empty($_POST['folio']))
+        {
+          $sql ="SELECT Id, archivo, estatus, fecha from ordenes
+          WHERE Id = '".$control."' ";
+          $result =  mysqli_query($conexion,$sql);
+        }
+    }
+    else
+    {
+        $sql ="SELECT Id, archivo, estatus, fecha from ordenes
+          WHERE Id = '1' ";
+          $result =  mysqli_query($conexion,$sql);
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,8 +58,10 @@
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
-                    <li class="nav__item"><a href="../index.html" class="nav__link active-link">Home</a></li>
+                    <li class="nav__item"><a href="../index.html#home" class="nav__link active-link">Home</a></li>
                     <li class="nav__item"><a href="#about" class="nav__link">Konicentro Digital</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link">Estatus de Orden</a></li>
+                    
 
                     <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
                 </ul>
@@ -70,6 +96,9 @@
                 <div class="about__data">
                     <span class="section-subtitle">Sube tu Archivo</span>
                     <form id="frmArticulos" action="#" method="POST">
+                    <?php while($ver = mysqli_fetch_row($autoI)): ?>
+                        <input type="number" class="form" id="Id" name="Id" value="<?php echo $ver[0] +1 ?>" readonly >
+                    <?php endwhile;?>
                         <input class="form"  type="file" name="archvivo" id="archvivo">
                         <input class="form" name="nombre" id="nombre" type="text" name="" id="" placeholder="Nombre">
                         <input class="form" name="telefono" id="telefono" type="number" name="" id="" placeholder="Telefono">
@@ -106,7 +135,7 @@
                             <option value="Ensenada">Ensenada</option>
                         </select>
 
-                        <input class="form" id="Icantidad" name="Icantidad" type="number" name="" id="" placeholder="Cantidad">
+                        <input class="form" id="Icantidad" name="Icantidad" type="number" placeholder="Cantidad">
 
                         <input id="todalOrden" name="todalOrden" readonly class="form" type="text" placeholder="Total" />
 
@@ -127,6 +156,35 @@
                     &nbsp; &nbsp;
                     <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
                     <canvas id="the-canvas" width="200px" height="300px"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact section bd-container" id="contact">
+            <div class="contact__container bd-grid">
+                <div class="contact__data">
+                    <span class="section-subtitle contact__initial">Ordenes de Trabajo</span>
+                    <h2 class="section-title contact__initial">Revisar Estatus de Orden</h2>
+                    <p class="contact__description"></p>
+                    
+                <div id="trabajo" class="menu__content">
+                    <img src="https://play-lh.googleusercontent.com/9XKD5S7rwQ6FiPXSyp9SzLXfIue88ntf9sJ9K250IuHTL7pmn2-ZB0sngAX4A2Bw4w" class="menu__img" alt="">
+                    <h3 id="orden" name="orden" class="manu__name">Folio: </h3>
+                    <span id="doc" name="doc" class="menu__detail">Doc: </span>
+                    <span id="estatus" name="estatus" class="menu__price">Estatus: </span>
+                    <span id="fecha" name="fecha" class="menu__price">Fecha: </span>
+                    <a href="#" class="button menu__button"><i class='bx bxs-file-pdf'></i></a>
+                </div>
+
+
+                </div>
+
+                <div class="contact__button">
+                    <form id="frmFolios" action="#" method="post">
+                    <span class="section-subtitle contact__initial">Orden de Trabajo</span>
+                     <input type="number" id="folio" name="folio" placeholder="Folio" class="form" required> 
+                    </form>
+                    <button name="btnBuscar" id="btnBuscar" class="btnpdf" onclick="agregarDato()">Buscar</button>
                 </div>
             </div>
         </section>
@@ -169,6 +227,8 @@
     <script src="../js/jquery-3.5.1.js"></script>
     <script src="../librerias/alertifyjs/alertify.js"></script>
     <script src="../js/archivos.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/funciones.js"></script>
     
 </body>
 

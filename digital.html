@@ -34,8 +34,9 @@
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
-                    <li class="nav__item"><a href="index.html" class="nav__link active-link">Home</a></li>
+                    <li class="nav__item"><a href="index.html#home" class="nav__link active-link">Home</a></li>
                     <li class="nav__item"><a href="#about" class="nav__link">Konicentro Digital</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link">Estatus de Orden</a></li>
 
                     <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
                 </ul>
@@ -127,6 +128,35 @@
                     &nbsp; &nbsp;
                     <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
                     <canvas id="the-canvas" width="200px" height="300px"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact section bd-container" id="contact">
+            <div class="contact__container bd-grid">
+                <div class="contact__data">
+                    <span class="section-subtitle contact__initial">Ordenes de Trabajo</span>
+                    <h2 class="section-title contact__initial">Revisar Estatus de Orden</h2>
+                    <p class="contact__description"></p>
+                    
+                <div id="trabajo" class="menu__content">
+                    <img src="https://play-lh.googleusercontent.com/9XKD5S7rwQ6FiPXSyp9SzLXfIue88ntf9sJ9K250IuHTL7pmn2-ZB0sngAX4A2Bw4w" class="menu__img" alt="">
+                    <h3 id="orden" name="orden" class="manu__name">Folio: </h3>
+                    <span id="doc" name="doc" class="menu__detail">Doc: </span>
+                    <span id="estatus" name="estatus" class="menu__price">Estatus: </span>
+                    <span id="fecha" name="fecha" class="menu__price">Fecha: </span>
+                    <a href="#" class="button menu__button"><i class='bx bxs-file-pdf'></i></a>
+                </div>
+
+
+                </div>
+
+                <div class="contact__button">
+                    <form id="frmFolios" action="#" method="post">
+                    <span class="section-subtitle contact__initial">Orden de Trabajo</span>
+                     <input type="number" id="folio" name="folio" placeholder="Folio" class="form" required> 
+                    </form>
+                    <button name="btnBuscar" id="btnBuscar" class="btnpdf" >Buscar</button>
                 </div>
             </div>
         </section>
